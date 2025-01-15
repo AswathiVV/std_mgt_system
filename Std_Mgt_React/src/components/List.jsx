@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import axios from 'axios'
+import Add from "./Add"
 
 function List(){
     const [data,setData] = useState([])
@@ -23,6 +24,12 @@ function List(){
             setData(data.map((prv)=>prv.id===id ? res.data : prv))
         }).catch(error=>console.log(error.message))
     }
+
+    const Delete_dlts = (id)=>{
+        axios.delete(`http://127.0.0.1:8000/api/std/${id}/`).then (res=>{
+            setData(data.filter((task)=>task.id!=id))
+        }).catch(error=console.log(error.message))
+    }
     return(
         <div className="container">
             <h1>Student Details</h1>
@@ -45,13 +52,13 @@ function List(){
                             <td>{value.email}</td>
                             <td>{value.phno}</td>
                             <td><button className="btn btn-outline-info" onClick={()=>{Edit_dtls(value)}}>Edit</button></td>
-                            <td><button className="btn btn-outline-danger" onClick={()=>{}}><i className="bi bi-trash3"></i></button></td>
+                            <td><button className="btn btn-outline-danger" onClick={()=>{Delete_dlts(value.id)}}><i className="bi bi-trash3"></i></button></td>
 
                         </tr>
                     ))}
                 </tbody>
             </table>
-            {editing ? <EditForm  curTask={editdata} updatefun={updateDtls}/>:null}
+            {editing ? <EditForm  curTask={editdata} updatefun={updateDtls}/>:<Add/>}
         </div>
     )
 }

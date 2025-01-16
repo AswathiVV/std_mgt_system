@@ -20,14 +20,16 @@ function Add(){
          
     }
     return(
+        <>
         <form onSubmit={handleSubmit}>
-            <input type="number" name="roll_no" id="roll_no" value={task.roll_no} onChange={handleChange}/>
-            <input type="text" name="name" id="name" value={task.name} onChange={handleChange}/>
-            <input type="number" name="age" id="age" value={task.age} onChange={handleChange}/>
-            <input type="text" name="email" id="email" value={task.email} onChange={handleChange}/>
-            <input type="text" name="phno" id="phno" value={task.phno} onChange={handleChange}/>
+            <input type="number" name="roll_no" id="roll_no" placeholder="Roll No" value={roll_no} onChange={(e)=>setRollno(e.target.value)}/>
+            <input type="text" name="name" id="name" value={name} placeholder="Name" onChange={(e)=>setName(e.target.value)}/>
+            <input type="number" name="age" id="age" value={age} placeholder="Age" onChange={(e)=>setAge(e.target.value)}/>
+            <input type="text" name="email" id="email" value={email} placeholder="Email" onChange={(e)=>setEmail(e.target.value)}/>
+            <input type="text" name="phno" id="phno" value={phno} placeholder="Phone" onChange={(e)=>setPhno(e.target.value)}/>
             <input type="submit" value="update"/>
         </form>
+        </>
     )
 }
 export default Add
